@@ -1,5 +1,7 @@
 # Krea 2 → 场景线性 HDR:实施与验证报告
 
+*[English](implementation-report-EN.md) · 中文*
+
 > 配套文档:
 > - 《研究发现报告》`2026-07-08-krea2-hdr-research-findings.md`(路线调研、6 大探索区、判断)
 > - 本报告:**实际实现、训练、测试、ComfyUI 落地的记录与结果**

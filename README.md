@@ -1,5 +1,7 @@
 # Krea 2 HDR Toolkit
 
+*[English](README_EN.md) · 中文*
+
 让 **Krea 2** 通过小 LoRA 生成**真·场景线性 HDR**(浮点、值 >> 1、可导出 EXR / IBL)的一套**独立工具与文档**:
 编码曲线与 CPU 验证、数据集构建与核验、EXR / HDR-AVIF 转换、ComfyUI 节点包与工作流、以及完整报告(含 PDF)。
 

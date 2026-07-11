@@ -5,7 +5,9 @@
 
 > **一句话结论**:"**LogC4 感知编码 + 冻结 VAE + 在 RAW 上训 DiT LoRA**" 能让 Krea 2 生成**真学到的**(非曲线编造的)扩展动态范围,并泛化到训练集外内容;ComfyUI 端到端可产出真 HDR EXR(峰值 459× / 8.7 stop)。单平面上限 ~470×(太阳级需多平面)。详见 `reports/`。
 
-模型权重不在本仓库(见文末"权重与数据")。这里是**工具 + 报告**。
+模型权重不在本仓库(见 [权重与数据](#权重与数据))。这里是**工具 + 报告**。
+
+**开源资源**:LoRA → [🤗 LAXMAYDAY/krea2-scene-linear-hdr-lora](https://huggingface.co/LAXMAYDAY/krea2-scene-linear-hdr-lora) · 训练数据集 → [🤗 datasets/LAXMAYDAY/krea2-scene-linear-hdr-dataset](https://huggingface.co/datasets/LAXMAYDAY/krea2-scene-linear-hdr-dataset)
 
 ---
 
@@ -111,12 +113,11 @@ python3 remap_lora_for_comfyui.py in.safetensors out_COMFYUI.safetensors /path/t
 4. ComfyUI 可用:LoRA 需 key 重映射(0→264)+ 节点;e2e 产出 459×/8.7 stop EXR。
 5. 诚实上限:单平面 ~470×,太阳级需多平面 / 增益图 / 参数化太阳。
 
-## 权重与数据(不在本仓库)
+## 权重与数据
 
-- **LoRA**:私密 HF `LAXMAYDAY/krea2-scene-linear-hdr-lora`(含 musubi 版 + ComfyUI 重映射版)。
-- **基座**:Krea-2-Raw、Qwen3-VL-4B、Qwen-Image VAE(各自 HF)。
-- **数据集图像**:由 `build_dataset.py` 从 Poly Haven(CC0)重建。
-- 完整训练/环境/复现细节见配套主仓库的 `HANDOVER.md`。
+- **LoRA(公开)**:[huggingface.co/LAXMAYDAY/krea2-scene-linear-hdr-lora](https://huggingface.co/LAXMAYDAY/krea2-scene-linear-hdr-lora) —— 含 musubi/diffusers 版 + ComfyUI 重映射版 + 模型卡。
+- **训练数据集(公开,CC0)**:[huggingface.co/datasets/LAXMAYDAY/krea2-scene-linear-hdr-dataset](https://huggingface.co/datasets/LAXMAYDAY/krea2-scene-linear-hdr-dataset) —— 320 张 LogC4 场景线性 HDR 训练图 + caption + manifests(inverse-LogC4 解回场景线性)。也可用 `tools/build_dataset.py` 从 Poly Haven 重建。
+- **基座**:[krea/Krea-2-Raw](https://huggingface.co/krea/Krea-2-Raw)、[Comfy-Org/Qwen3-VL](https://huggingface.co/Comfy-Org/Qwen3-VL)、[Comfy-Org/Qwen-Image_ComfyUI](https://huggingface.co/Comfy-Org/Qwen-Image_ComfyUI)(Qwen Image VAE)。
 
 ## License
 

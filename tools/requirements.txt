@@ -1,0 +1,14 @@
+# core (CPU tools: encoding, dataset, EXR/AVIF conversion, validation)
+numpy>=2.0
+OpenEXR>=3.2
+imageio>=2.30
+opencv-python-headless>=4.9   # 16-bit PQ PNG write in to_display_hdr; do NOT install opencv-python (needs libGL)
+matplotlib>=3.7
+requests>=2.28
+pillow>=10.0
+
+# optional — only for test_vae_roundtrip.py / test_hlg_vs_logc4.py Part 2 (real Qwen VAE, needs a GPU)
+# torch>=2.4
+# diffusers>=0.39   # provides AutoencoderKLQwenImage
+
+# system tools (install separately): ffmpeg + avifenc (apt: ffmpeg libavif-bin) for HDR-AVIF export

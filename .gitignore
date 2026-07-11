@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+tools/out/
+tools/data/
+*.exr
+*.avif
+*.hdr
+*.safetensors
+*.log
+.DS_Store

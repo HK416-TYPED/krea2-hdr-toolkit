@@ -1,0 +1,13 @@
+{
+  "1": {"class_type":"UNETLoader","inputs":{"unet_name":"krea2_raw.safetensors","weight_dtype":"default"}},
+  "2": {"class_type":"CLIPLoader","inputs":{"clip_name":"qwen3vl_4b_bf16.safetensors","type":"krea2"}},
+  "3": {"class_type":"VAELoader","inputs":{"vae_name":"qwen_image_vae.safetensors"}},
+  "4": {"class_type":"LoraLoader","inputs":{"model":["1",0],"clip":["2",0],"lora_name":"krea2-hdr-logc4-v1.safetensors","strength_model":1.0,"strength_clip":1.0}},
+  "6": {"class_type":"CLIPTextEncode","inputs":{"clip":["4",1],"text":"scene-linear HDR photo, sunset over the ocean, bright sun near the horizon, high dynamic range, physically based lighting"}},
+  "7": {"class_type":"CLIPTextEncode","inputs":{"clip":["4",1],"text":""}},
+  "8": {"class_type":"EmptySD3LatentImage","inputs":{"width":1024,"height":1024,"batch_size":1}},
+  "9": {"class_type":"KSampler","inputs":{"model":["4",0],"positive":["6",0],"negative":["7",0],"latent_image":["8",0],"seed":3,"steps":28,"cfg":5.5,"sampler_name":"euler","scheduler":"simple","denoise":1.0}},
+  "10":{"class_type":"VAEDecode","inputs":{"samples":["9",0],"vae":["3",0]}},
+  "11":{"class_type":"LogC4ToLinear","inputs":{"image":["10",0],"exposure":1.0}},
+  "12":{"class_type":"SaveEXRSceneLinear","inputs":{"images":["11",0],"filename_prefix":"krea_hdr","pixel_type":"float32","compression":"zip"}}
+}
